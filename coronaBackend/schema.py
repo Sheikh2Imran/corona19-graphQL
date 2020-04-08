@@ -3,8 +3,9 @@ import graphene
 import corona.schema
 
 
-class Query(corona.schema.Query, graphene.ObjectType):
+class Query(corona.schema.SubmittedQuery, corona.schema.CoronaQuery, graphene.ObjectType):
     pass
+
 
 class Mutation(corona.schema.Mutation, graphene.ObjectType):
     pass
