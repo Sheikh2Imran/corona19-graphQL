@@ -18,8 +18,8 @@ class SubmittedCoronaCase(models.Model):
     district = models.CharField(max_length=265, null=False, blank=False)
     source = models.CharField(max_length=500, null=False, blank=False)
     status = models.CharField(max_length=1, choices=STATUS, default='2')
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateField(default=timezone.now)
+    updated_at = models.DateField(default=timezone.now)
 
     def __str__(self):
         return "Submitted by: {}".format(self.person_name)
@@ -30,8 +30,8 @@ class CoronaCase(models.Model):
     death = models.IntegerField(default=0)
     recovered = models.IntegerField(default=0)
     district = models.CharField(max_length=265, null=False, blank=False)
-    created_at = models.DateTimeField(default=timezone.now)
-    updated_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateField(default=timezone.now)
+    updated_at = models.DateField(default=timezone.now)
 
     def __str__(self):
         return "Affected from: {}".format(self.district)

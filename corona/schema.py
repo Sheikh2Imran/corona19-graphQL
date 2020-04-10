@@ -1,5 +1,6 @@
 import datetime
-from django.db.models import Sum
+from django.db.models import Sum, Count
+from itertools import groupby
 
 import graphene
 from graphene_django import DjangoObjectType
@@ -28,9 +29,17 @@ class CoronaCaseType(DjangoObjectType):
 
 class CoronaQuery(graphene.ObjectType):
     corona_cases_list = graphene.List(CoronaCaseType)
+    # datewise_corona_cases_list = graphene.Field(CoronaCaseType)
+    # districtwise_corona_cases_list = graphene.JSONString(CoronaCaseType)
 
     def resolve_corona_cases_list(self, info, **kwargs):
         return CoronaCase.objects.all()
+
+    # def resolve_datewise_corona_cases_list(self, info, **kwargs):
+    #     return CoronaCase.objects.values('updated_at').annotate(affected=Sum('affected'), death=Sum('death'), recovered=Sum('recovered')).__dict__
+    #
+    # def resolve_districtwise_corona_cases_list(self, info, **kwargs):
+    #     return CoronaCase.objects.values('district').annotate(affected=Sum('affected'), death=Sum('death'), recovered=Sum('recovered'))
 
 
 class CreateSubmittedCoronaCase(graphene.Mutation):
@@ -161,8 +170,33 @@ class TotalCoronaCase(graphene.Mutation):
         )
 
 
+class DistrictwiseCoronaCase(graphene.Mutation):
+    district = graphene.String()
+    affected = graphene.Int()
+    death = graphene.Int()
+    recovered = graphene.Int()
+    status_code = graphene.String()
+
+    class Arguments:
+        test = graphene.String()
+
+    def mutate(self, info, *args, **kwargs):
+        total_corona_case = CoronaCase.objects.values('district').annotate(
+            affected=Sum('affected'), death=Sum('death'), recovered=Sum('recovered'))
+
+        return DistrictwiseCoronaCase(
+            district=total_corona_case['district'],
+            affected=total_corona_case['affected'],
+            death=total_corona_case['death'],
+            recovered=total_corona_case['recovered'],
+            status_code=FOUNDED_SUCCESS_CODE,
+        )
+
+
 class Mutation(graphene.ObjectType):
     create_submitted_corona_case = CreateSubmittedCoronaCase.Field()
     update_submitted_corona_case = UpdateSubmittedCoronaCase.Field()
     today_total_corona_case = TodayTotalCoronaCase.Field()
     total_corona_case = TotalCoronaCase.Field()
+    # datewise_corona_case = DatewiseCoronaCase.Field()
+    districtwise_corona_case = DistrictwiseCoronaCase.Field()
