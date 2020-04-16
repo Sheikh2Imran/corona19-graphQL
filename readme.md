@@ -1,7 +1,7 @@
-#API Doc. For Corona19 Backend with GraphQL
-###Endpoint: Submit corona a case.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+# API Doc. For Corona19 Backend with GraphQL
+### Endpoint: Submit corona a case.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 mutation{
   createSubmittedCoronaCase(
@@ -30,7 +30,7 @@ mutation{
   }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
@@ -52,9 +52,9 @@ mutation{
     }
 }
 ```
-###Endpoint: Submitted corona cases list.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+### Endpoint: Submitted corona cases list.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 query{
     submittedCoronaCasesList{
@@ -73,7 +73,7 @@ query{
     }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
@@ -110,9 +110,9 @@ query{
     }
 }
 ```
-###Endpoint: Update submitted corona case.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+### Endpoint: Update submitted corona case.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 mutation{
   updateSubmittedCoronaCase(
@@ -123,7 +123,7 @@ mutation{
   }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
@@ -133,9 +133,9 @@ mutation{
     }
 }
 ```
-###Endpoint: Corona case list.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+### Endpoint: Corona case list.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 query{
     coronaCasesList{
@@ -149,7 +149,7 @@ query{
     }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
@@ -184,9 +184,9 @@ query{
     }
 }
 ```
-###Endpoint: Get total corona cases.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+### Endpoint: Get total corona cases.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 mutation{
   totalCoronaCase{
@@ -197,7 +197,7 @@ mutation{
   }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
@@ -210,9 +210,9 @@ mutation{
     }
 }
 ```
-###Endpoint: Get today total corona cases.
-####URL: http:// [your local ip address]:8000/graphql/
-####Request body:
+### Endpoint: Get today total corona cases.
+#### URL: http:// [your local ip address]:8000/graphql/
+#### Request body:
 ```
 mutation{
   todayTotalCoronaCase{
@@ -223,7 +223,7 @@ mutation{
   }
 }
 ```
-####Response body:
+#### Response body:
 ```
 {
     "data": {
