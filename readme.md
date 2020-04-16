@@ -1,4 +1,4 @@
-# API Doc. For Corona19 Backend with GraphQL
+# API Documentation For Corona19 Backend with GraphQL
 ### Endpoint: Submit corona a case.
 #### URL: http:// [your local ip address]:8000/graphql/
 #### Request body:
